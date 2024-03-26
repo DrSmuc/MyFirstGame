@@ -270,7 +270,11 @@ public class PlayerMovement : MonoBehaviour
         if (horizontalInput > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
         if (horizontalInput < 0) transform.rotation = Quaternion.Euler(0f, -90f, 0f);
 
-        if (transform.position.y < -40) transform.position = lastSpawn.position;
+        if (transform.position.y < -40)
+        {
+            rb.velocity = Vector3.zero;
+            transform.position = lastSpawn.position;
+        }
 
         //calculate move direction
         moveDirection = orientation.forward * Math.Abs(horizontalInput);
